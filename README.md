@@ -43,4 +43,4 @@ Just include role in a playbook and provide your vars:
 ```
 
 ## Author
-Created by Kyrylo Tykhanskyi in the misty October 2024. 
+Created by Kyrylo Tykhanskyi in the foggy October 2024. 
