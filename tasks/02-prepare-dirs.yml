@@ -1,0 +1,15 @@
+---
+- name: Ensure work directory exists
+  ansible.builtin.file:
+    path: "{{ workdir }}"
+    state: directory
+
+- name: Ensure temporary directory is absent
+  ansible.builtin.file:
+    path: "{{ workdir }}/repo"
+    state: absent
+
+- name: Ensure backup directory exists
+  ansible.builtin.file:
+    path: "{{ backup }}"
+    state: directory

@@ -1,0 +1,6 @@
+---
+- name: Cleanup
+  listen: "clean"
+  ansible.builtin.file:
+    path: "{{ workdir }}/repo"
+    state: absent

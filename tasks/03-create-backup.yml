@@ -1,0 +1,32 @@
+---
+- name: Clone full repo
+  ansible.builtin.command:
+    chdir: "{{ workdir }}"
+    cmd: "git clone --mirror https://{{ username }}:{{ token }}@{{ repo }}.git repo -c http.sslVerify={{ ssl }}"
+
+- name: Extract name for a bundle
+  ansible.builtin.set_fact:
+    bundle_name: "{{  repo.split('/')[1:] | join('-') }}"
+
+- name: Create bundle
+  ansible.builtin.command:
+    chdir: "{{ workdir }}/repo"
+    cmd: "git bundle create {{ bundle_name }}.bundle --all"
+
+- name: Capture bundle info
+  ansible.builtin.stat:
+    path: "{{ workdir }}/repo/{{ bundle_name }}.bundle"
+  register: bundle
+
+- name: Show error message if bundle was not created
+  ansible.builtin.debug:
+    msg: "Could not create a backup for repo {{ repo }}"
+  notify: "clean"
+  when: not bundle.stat.exists
+
+- name: Copy bundle to backup directory
+  ansible.builtin.copy:
+    src: "{{ workdir }}/repo/{{ bundle_name }}.bundle"
+    dest: "{{ backup }}/{{ bundle_name }}.bundle"
+  notify: "clean"
+  when: bundle.stat.exists

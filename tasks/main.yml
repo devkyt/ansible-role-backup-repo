@@ -1,0 +1,9 @@
+---
+- name: Ensure git is installed
+  ansible.builtin.include_tasks: "01-install-git-{{ ansible_os_family }}.yml"
+
+- name: Ensure working directories is in proper state
+  ansible.builtin.include_tasks: "02-prepare-dirs.yml"
+
+- name: Create backup
+  ansible.builtin.include_tasks: "03-create-backup.yml"

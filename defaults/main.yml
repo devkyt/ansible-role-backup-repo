@@ -1,0 +1,9 @@
+username: "dev"
+token: "token"
+
+repo: "repo"
+
+workdir: "/tmp/workdir"
+backup: "/tmp/backup"
+
+ssl: "false"
