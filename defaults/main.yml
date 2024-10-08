@@ -1,9 +1,17 @@
+# Username or a token's name
 username: "dev"
+
+# Token with the permission to read from repo
 token: "token"
 
-repo: "repo"
+# Repository name in format "hub/repo" (without https)
+repo: "gitlab.org.com/project/back"
 
+# Path to directory where role will be running
 workdir: "/tmp/workdir"
+
+# Path to directory where backup will be stored
 backup: "/tmp/backup"
 
-ssl: "false"
+# Check ssl during connection (disable if you are using self-signed cert on a server)
+ssl: "true"
