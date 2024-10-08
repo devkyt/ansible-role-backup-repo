@@ -52,7 +52,7 @@ Or run in a loop for several repos:
   tasks:
     - name: Backup repos
       include_role: 
-        name: ./ansible-role-backup-repo
+        name: devkyt.backup-repo
       vars:
         repo: "{{ item }}"
       loop:
